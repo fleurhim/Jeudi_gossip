@@ -1,0 +1,15 @@
+<div class="container"  style="margin: 5%; align-items: center">
+  <main>
+
+    <h1>Éditer le commentaire</h1>
+
+<%= form_with model: @comment, class: "nifty_form" do |f| %>
+<div class="form-group">
+  <%= f.text_area :content, class: 'form-control' %>
+<div class="form-group">
+<br>
+  <%= f.submit "Éditer le commentaire", class: 'btn btn-success' %>
+
+  <a data-confirm="Es-tu sûr(e)?"> <%= button_to "Supprimer", @comment, :method => :delete, class: "btn btn-danger" %> </a>
+
+<% end %>

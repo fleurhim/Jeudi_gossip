@@ -1,0 +1,14 @@
+<div style="margin-left: 10%; margin-right: 10%; align-items: center">
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  		<h1 class="display-4">Édite ton Gossip</h1>
+	</div>
+		<%= form_with model: @gossip, class: "nifty_form" do |f| %>
+			<div class="form-group">
+			  <%= f.text_field :title, class: 'form-control' %>
+			</div>
+			<div class="form-group">
+			  <%= f.text_area :content, class: 'form-control' %>
+			</div>
+			  <%= f.submit "Éditer", class: 'btn btn-success' %>
+		<% end %>
+</div>

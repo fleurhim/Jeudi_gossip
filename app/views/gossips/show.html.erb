@@ -1,0 +1,54 @@
+<% flash.each do |msg| %>
+  <div class="alert alert-success">
+    <%= msg[1] %>
+  </div>
+<% end %>
+
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Tu veux tout savoir ?</h1>
+  </div>
+<main role="main" class="container" style="margin: 5%">
+
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">Écrit à <%= link_to @gossip.user.city.name, city_path(@gossip.user.city.id) %> le <%=@gossip.created_at%></strong>
+              <h3 class="mb-0">
+                <a class="text-dark">Titre: <%= @gossip.title%> </p></a>
+              </h3>
+              <div class="mb-1 text-muted">Auteur: <%= link_to @gossip.user.first_name + " " + @gossip.user.last_name, user_path(@gossip.user.id) %></div>
+              <p class="card-text mb-auto"><%=@gossip.content%> </p></p>
+         <p><%= link_to "Éditer", edit_gossip_path(@gossip.id), class: "btn btn-outline-primary"  %>
+            <%= button_to 'Like', gossip_likes_path(@gossip), method: :post, class: "btn btn-outline-warning" %></p>
+            <p><a href="#", data-confirm="Es-tu sûr(e)?", data-method="DELETE", class= "btn btn-danger">Supprimer</a></p>
+               </div>
+          </div>
+
+<h3 class="pb-3 mb-4 font-italic border-bottom">
+   Liste des commentaires
+</h3>
+
+<div class="blog-post">
+   <% Comment.all.each do |comment| %>
+      <% if comment.gossip_id == @gossip.id %>
+               <h4> By <%=comment.user.first_name%> <%=comment.user.last_name%></h4>
+               <%= comment.content %>
+               <%= link_to "Éditer", edit_comment_path(comment.id), class: "btn btn-outline-primary" %>
+      <% end %>
+      <% end %>
+</div>
+<br><br>
+
+<h3 class="pb-3 mb-4 font-italic border-bottom">
+   Créer un nouveau commentaire
+</h3>
+
+  	<%= form_tag url_for(controller: "comments", action: 'create'), method: "post" do %>
+		<div class="form-label-group">
+      <%= label_tag 'Content' %>
+      <%= text_area_tag 'content', "",class: "form-control"%>
+		</div>
+      <br><br>
+    <%= submit_tag "Create Comment", class: 'btn btn-success' %>
+		<%= hidden_field_tag :gossip_id, @gossip.id%>
+    <% end %>
+</main>

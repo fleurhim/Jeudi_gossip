@@ -1,0 +1,46 @@
+<div style="margin-left: 30%; margin-right: 30%; align-items: center">
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Sign up</h1>
+    </div>
+
+<div class="text-center mb-4">
+    <%= form_tag url_for(action: 'create'), method: "post" do %>
+      <div class="form-group">
+        <%= text_field_tag 'email', @user.email, class: 'form-control', placeholder: "Email" %>
+        <br /> <br />
+      </div>
+      <div class="form-group">
+        <%= password_field_tag 'password', @user.password, class: 'form-control', placeholder: "Password" %>
+        <br /> <br />
+      </div>
+      <div class="form-group">
+        <%= text_field_tag 'first_name', @user.first_name, class: 'form-control', placeholder: "First name" %>
+        <br /> <br />
+      </div>
+      <div class="form-group">
+        <%= text_field_tag 'last_name', @user.last_name, class: 'form-control', placeholder: "Last name" %>
+        <br /> <br />
+        <%= select_tag 'city', options_for_select(City.all.pluck('name')) %>
+        <br /> <br />
+      </div>
+      <%= submit_tag "Sign up", class: 'btn btn-success' %>
+    <% end %>
+</div>
+
+<% if @user.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        Nous n'avons pas réussi à créer votre profil pour la (ou les) raison(s) suivante(s) :
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+<% end %>
+</div>
+
+
+
+
+    

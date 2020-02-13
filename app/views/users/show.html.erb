@@ -6,6 +6,6 @@
 			<p class="lead"> <b>Nom</b>: <%= @user.last_name %></p>
 			<p class="lead"> <b>Age</b>: <%= @user.age %></p>
 			<p class="lead"> <b>Email</b>: <%= @user.email %></p>
-			<p class="lead"> <b>Ville</b>: <%= @user.city.name %></p>
-			<p class="lead"> <b>Id</b>: <%= @user.id %></p>
+			<p class="lead"> <b>Ville</b>: <%= link_to @user.city.name, city_path(@user.city.id) %>
+			<p class="lead"> <b>Description</b>: <%= @user.description %></p>
 </main>

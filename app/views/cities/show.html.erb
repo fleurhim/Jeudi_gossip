@@ -1,0 +1,42 @@
+<main role="main" class="container">
+
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  		<h1 class="display-4">Bienvenue sur la page de <%= @city.name%></h1>
+	</div>
+
+  	<div class="album py-5 ">
+				<div class="row">
+					<% @city_gossips.each do |gossip| %>
+						<div class="col-md-4">
+							<div class="card" style="width: 80%;">
+							  <div class="card-body">
+							    <h5 class="card-title"><%=gossip.title%></h5>
+							    <h6 class="card-subtitle mb-2 text-muted">By <%=gossip.user.first_name%></h6>
+							    <p class="card-text"><%=gossip.content%></p>
+							    <h6 class="card-subtitle mb-2 text-muted">Number of likes: <%=gossip.likes.count%></h6>
+							    <div class="row d-inline-flex" >
+							    	<div class="col-4">
+							    		<%= link_to "More", gossip_path(gossip.id), class: "btn btn-primary" %>
+							    	</div>
+							    	<div class="col-4">
+							   			<% if logged_in? && current_user.id == gossip.user.id%>
+							    			<a href="#"><%= link_to "Éditer", edit_gossip_path(gossip.id), class: "btn btn-outline-primary" %></a>
+							    		<% end %>
+							    	</div>
+							    	<div class="col-4">
+							    		<%= button_to 'Like', gossip_likes_path(gossip.id), method: :post, class: "btn btn-outline-warning" %>
+									</div>
+								</div>
+							  </div>
+							</div>
+						<br>
+						</div>
+					<% end %> 
+				</div>  
+		</div>
+	</main>
+
+
+
+
+

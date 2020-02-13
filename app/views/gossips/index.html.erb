@@ -1,0 +1,57 @@
+<% flash.each do |msg| %>
+  <div class="alert alert-warning">
+    <%= msg[1] %>
+  </div>
+<% end %>
+
+<section class="jumbotron text-center">
+	<div class="container">
+		 <% if logged_in? %>
+			<h1 class="jumbotron-heading">Bienvenue <%= current_user.first_name %> !</h1>
+		<% else %>
+			<h1 class="jumbotron-heading"> Bienvenue !</h1>
+		<% end %>
+	  	<p class="lead text-muted"> Tu es du genre curieux(se) et tu as envi de connaître les derniers Gossips de THP ! <br> Ce site est fait pour toi !</p>
+	  	    <a href="http://localhost:3000/gossips/new" class="btn btn-primary my-2">Créer un nouveau Gossip</a>
+	</div>
+</section>
+
+<br>
+  <main role="main">
+  	<div class="album py-5 ">
+      <div class="container">
+				<div class="row">
+					<% @gossips.each do |gossip| %>
+						<div class="col-md-4">
+							<div class="card" style="width: 80%;">
+							  <div class="card-body">
+							    <h5 class="card-title"><%=gossip.title%></h5>
+							    <h6 class="card-subtitle mb-2 text-muted">By <%=gossip.user.first_name%></h6>
+							    <p class="card-text"><%=gossip.content%></p>
+							    <h6 class="card-subtitle mb-2 text-muted">Number of comments: <%=gossip.comments.count%></h6>
+							    <h6 class="card-subtitle mb-2 text-muted">Number of likes: <%=gossip.likes.count%></h6>
+							    <div class="row d-inline-flex" >
+							    	<div class="col-4">
+							    		<%= link_to "More", gossip_path(gossip.id), class: "btn btn-primary" %>
+							    	</div>
+							    	<div class="col-4">
+							   			<% if logged_in? && current_user.id == gossip.user.id%>
+							    			<a href="#"><%= link_to "Éditer", edit_gossip_path(gossip.id), class: "btn btn-outline-primary" %></a>
+							    		<% end %>
+							    	</div>
+							    	<div class="col-4">
+							    		<%= button_to 'Like', gossip_likes_path(gossip.id), method: :post, class: "btn btn-outline-warning" %>
+									</div>
+								</div>
+							    
+							  </div>
+							</div>
+						<br>
+						</div>
+					<% end %> 
+				</div>  
+			</div>
+		</div>
+	</main>
+
+

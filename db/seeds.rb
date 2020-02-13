@@ -30,6 +30,14 @@ JoinTableTagGossip.destroy_all
   )
 end
 
+User.create(
+    first_name: "Anonymous",
+    last_name: "Person",
+    description: Faker::Quote.most_interesting_man_in_the_world,
+    email: Faker::Internet.email,
+    age: rand(10..80),
+    city_id: rand(City.first.id..City.last.id)
+  )
 10.times do
   User.create(
     first_name: Faker::Name.first_name,
@@ -37,13 +45,14 @@ end
     description: Faker::Quote.most_interesting_man_in_the_world,
     email: Faker::Internet.email,
     age: rand(10..80),
-    city_id: rand(City.first.id..City.last.id)
+    city_id: rand(City.first.id..City.last.id),
+    password: Faker::String.random(length: 6)
   )
 end
 
 20.times do
   Gossip.create(
-    title: Faker::Quote.most_interesting_man_in_the_world,
+    title: Faker::Lorem.sentence(word_count: 2),
     date: Faker::Date.forward(days: 30),
     content: Faker::ChuckNorris.fact,
     user_id: rand(User.first.id..User.last.id)

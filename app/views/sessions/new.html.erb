@@ -1,0 +1,28 @@
+<% flash.each do |msg| %>
+  <div class="alert alert-warning">
+    <%= msg[1] %>
+  </div>
+<% end %>
+
+<div style="margin-left: 30%; margin-right: 30%; align-items: center">
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Login</h1>
+</div>
+
+<div class="text-center mb-4">
+    <%= form_tag url_for(action: 'create'), method: "post", class: "form-signin" do %>
+      <div class="form-label-group">
+        <%= text_field_tag 'email', "", class: "form-control", placeholder: "Email"%>
+        <br /> <br />
+      </div>
+      <div class="form-label-group">
+        <%= password_field_tag 'password', "", class: "form-control", placeholder: "Password"%>
+        <br /> <br />
+      </div>
+      <%= submit_tag "Sign in", class: 'btn btn-success' %>
+    <% end %>
+</div>
+
+
+</div>
