@@ -1,24 +1,17 @@
-# README
+# Gossip Project :mega:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to our Gossip Application! 
 
-Things you may want to cover:
+## Installation :wrench:
 
-* Ruby version
+```bash
+bundle install
+rails db:create
+rails db:migrate
+rails db:seed #To create a random database
+rails s #To start the server
+```
 
-* System dependencies
+## Team  :heart:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Made in 🥨Strasbourg:beer: by Fleur Himmler
